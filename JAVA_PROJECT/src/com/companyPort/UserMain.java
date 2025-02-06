@@ -13,6 +13,7 @@ import java.util.ArrayList;
 		
 	List<UserInfo>	UserView_intro	controller
 					UserView_crud	[] process
+					UserView_login
 */
 
 public class UserMain {
@@ -38,18 +39,17 @@ public class UserMain {
 	}
 	
 	// 행위 - 기능 - 멤버함수
-	public void login() {
-		intro.btns[0].addActionListener(new ActionListener() {
+	
+	public void intro() { 
+		intro.btns[0].addActionListener(new ActionListener() { //로그인 버튼
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				intro.frame.dispose();//현재창 끄고
 				login.show();//로그인 창 열기
 			}	
 		});
-	}
-	
-	public void intro() { 
-		intro.btns[1].addActionListener(new ActionListener() {
+		
+		intro.btns[1].addActionListener(new ActionListener() { //회원가입 버튼
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				intro.frame.dispose();//현재창 끄고
@@ -57,6 +57,8 @@ public class UserMain {
 				member();
 			}	
 		});
+		
+		
 	}
 	public void member() { 
 		crud.button[0].addActionListener(new ActionListener() {

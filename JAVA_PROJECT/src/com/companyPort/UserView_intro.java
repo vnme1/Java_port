@@ -33,7 +33,7 @@ public class UserView_intro {
 		
 		//이미지 크기조절
 		Image img = icon.getImage();
-		Image changeimg = img.getScaledInstance(500, 400, Image.SCALE_SMOOTH);
+		Image changeimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
 		ImageIcon changeicon = new ImageIcon(changeimg);
 		label = new JLabel(changeicon);
 		
@@ -55,13 +55,13 @@ public class UserView_intro {
 		//frame.setLayout(new GridLayout(3,1));
 		frame.setLayout(null);
 		frame.setResizable(false); //움직이지마라
-		label.setBounds(0,0,500,400); //배치
-		btns[0].setBounds(200,250,100,50);
-		btns[1].setBounds(200,330,100,50);
+		label.setBounds(0,0,600,500); //배치
+		btns[0].setBounds(250,320,100,50);
+		btns[1].setBounds(250,400,100,50);
 		frame.add(label); //이미지
 		frame.add(btns[0]); //버튼1 로그인
 		frame.add(btns[1]); //버튼2 회원가입
-		frame.setSize(500,500); //크기
+		frame.setSize(600,600); //크기
 		frame.setVisible(true); //보이게...^^
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //닫기 버튼
 		

@@ -67,7 +67,7 @@ public class UserView_crud {
 		for(int i = 0; i<button.length; i++) {
 			panel.add(button[i]);
 		}
-		frame.setSize(400,300);
+		frame.setSize(600,600);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
