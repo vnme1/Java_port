@@ -47,7 +47,7 @@ public class UserView_login {
 		frame.setResizable(false); //움직이지마라
 		label.setBounds(0,0,600,500); //배치
 		JLabel l_id = new JLabel("ID >");
-		l_id.setBounds(100,150,100,50);
+		l_id.setBounds(250,150,100,50);
 
 		btns_login[0].setBounds(250,320,100,50);
 		btns_login[1].setBounds(250,400,100,50); //api부분
@@ -55,6 +55,7 @@ public class UserView_login {
 		frame.add(l_id); //id입력창
 		frame.add(btns_login[0]); //버튼1 로그인
 		frame.add(btns_login[1]); //버튼2 회원가입
+		
 		frame.setSize(600,600); //크기
 		frame.setVisible(true); //보이게...^^
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //닫기 버튼

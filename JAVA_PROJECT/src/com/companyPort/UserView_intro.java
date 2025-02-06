@@ -26,6 +26,7 @@ public class UserView_intro {
 	JLabel label;
 	JButton [] btns;
 	ImageIcon icon;
+	
 	//생성자
 	public UserView_intro() {
 		frame = new JFrame("@TOGETHER@");
@@ -61,6 +62,8 @@ public class UserView_intro {
 		frame.add(label); //이미지
 		frame.add(btns[0]); //버튼1 로그인
 		frame.add(btns[1]); //버튼2 회원가입
+		
+		
 		frame.setSize(600,600); //크기
 		frame.setVisible(true); //보이게...^^
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //닫기 버튼

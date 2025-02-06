@@ -35,10 +35,13 @@ public class UserMain {
 		intro = new UserView_intro(); intro.show();
 		crud = new UserView_crud();
 		login = new UserView_login();
-		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(),};
+		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(), new UserLogin()};
 	}
 	
 	// 행위 - 기능 - 멤버함수
+	public void back() {
+		
+	}
 	
 	public void intro() { 
 		intro.btns[0].addActionListener(new ActionListener() { //로그인 버튼
@@ -46,6 +49,7 @@ public class UserMain {
 			public void actionPerformed(ActionEvent e) {
 				intro.frame.dispose();//현재창 끄고
 				login.show();//로그인 창 열기
+				login();
 			}	
 		});
 		
@@ -57,10 +61,17 @@ public class UserMain {
 				member();
 			}	
 		});
-		
-		
+
 	}
-	public void member() { 
+	public void login() {
+		login.btns_login[0].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {  //로그인
+				controller = process[4]; controller.exec(users,crud); //처리하고 / 해당 view
+		}});
+	}
+	
+	public void member() { //회원crud
 		crud.button[0].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //등록
@@ -79,7 +90,9 @@ public class UserMain {
 		crud.button[3].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //종료
-				controller = process[3]; controller.exec(users,crud); //처리하고 / 해당 view
+				crud.frame.dispose();//crud창 끄고
+				intro.show();//로그인 창 열기
+				//controller = process[3]; controller.exec(users,crud); //처리하고 / 해당 view
 			}});
 		
 		
