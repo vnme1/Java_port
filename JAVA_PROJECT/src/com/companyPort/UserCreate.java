@@ -1,7 +1,10 @@
 package com.companyPort;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class UserCreate implements UserProcess {
 	@Override public void exec(ArrayList<UserInfo> users) {
@@ -33,6 +36,31 @@ public class UserCreate implements UserProcess {
 		}
 		
 		
+	}
+
+	@Override
+	public void exec(ArrayList<UserInfo> users, UserView_crud crud) {
+		// 알림창으로 입력받기
+		String c_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
+		String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
+		String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
+		String c_pwck = JOptionPane.showInputDialog("비밀번호를 다시 입력해주세요");
+		// model 데이터 저장 - ArrayList에 데이터 채우기
+//		for(;;) {
+//			if(c_pw != c_pwck) {
+//				System.out.println("비밀번호를 다시 확인해주세요");
+//				break;
+//			}else {
+//				users.add(new UserInfo(c_id,c_email,c_pw,c_pwck));
+//				break;
+//			}
+//		}
+		users.add(new UserInfo(c_id,c_email,c_pw,c_pwck));
+		// view 화면갱신 - crud
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Object[] data = {UserInfo.cnt,c_id,c_email,sdf.format(System.currentTimeMillis())}; //날짜 추가
+		crud.model.addRow(data);
+		//전체 데이터 불러오기 도전!
 	}
 
 }

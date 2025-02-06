@@ -1,5 +1,7 @@
 package com.companyPort;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 //클래스는 부품객체이다
@@ -20,6 +22,7 @@ public class UserMain {
 	//view
 	UserView_intro intro;
 	UserView_crud crud;
+	UserView_login login;
 	
 	//controller
 	UserProcess controller;
@@ -29,12 +32,56 @@ public class UserMain {
 	public UserMain() { 
 		users = new ArrayList<>();
 		intro = new UserView_intro(); intro.show();
-		process = new UserProcess[] { new UserCreate(), new UserRead(), new UserUpdate(), new UserDelete()};
+		crud = new UserView_crud();
+		login = new UserView_login();
+		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(),};
 	}
 	
 	// 행위 - 기능 - 멤버함수
-	public void intro() {  }
-	public void member() {  }
+	public void login() {
+		intro.btns[0].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				intro.frame.dispose();//현재창 끄고
+				login.show();//로그인 창 열기
+			}	
+		});
+	}
+	
+	public void intro() { 
+		intro.btns[1].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				intro.frame.dispose();//현재창 끄고
+				crud.show();//crud 창 열기
+				member();
+			}	
+		});
+	}
+	public void member() { 
+		crud.button[0].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {  //등록
+				controller = process[0]; controller.exec(users,crud); //처리하고 / 해당 view
+			}});
+		crud.button[1].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {  //수정
+				controller = process[1]; controller.exec(users,crud); //처리하고 / 해당 view
+			}});
+		crud.button[2].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {  //삭제
+				controller = process[2]; controller.exec(users,crud); //처리하고 / 해당 view
+			}});
+		crud.button[3].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {  //종료
+				controller = process[3]; controller.exec(users,crud); //처리하고 / 해당 view
+			}});
+		
+		
+	}
 	
 	public static void main(String[] args) {
 		new UserMain().intro();
