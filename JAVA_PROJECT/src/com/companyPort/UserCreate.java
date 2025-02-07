@@ -2,11 +2,15 @@ package com.companyPort;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 public class UserCreate implements UserProcess {
+	
+	
 	@Override public void exec(ArrayList<UserInfo> users) {
 		System.out.println(".....1. create");
 		
@@ -40,26 +44,63 @@ public class UserCreate implements UserProcess {
 
 	@Override
 	public void exec(ArrayList<UserInfo> users, UserView_crud crud) {
+		
+		
 		// 알림창으로 입력받기
-		String c_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
-		String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
-		String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
-		String c_pwck = JOptionPane.showInputDialog("비밀번호를 다시 입력해주세요");
+//		String c_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
+//		String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
+//		String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
+//		String c_pwck = JOptionPane.showInputDialog("비밀번호를 다시 입력해주세요");
 		// model 데이터 저장 - ArrayList에 데이터 채우기
-//		for(;;) {
-//			if(c_pw != c_pwck) {
-//				System.out.println("비밀번호를 다시 확인해주세요");
-//				break;
-//			}else {
-//				users.add(new UserInfo(c_id,c_email,c_pw,c_pwck));
-//				break;
-//			}
+		String result ="";
+//		System.out.println(c_pw);
+//		System.out.println(c_pwck);
+//		result = (c_pw.equals(c_pwck)? "성공":"실패");
+//		System.out.println(result);
+		
+
+		
+		for(;;) {
+			String c_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
+			Iterator<UserInfo> iter = users.iterator(); //줄을 서시오
+			while(iter.hasNext()) {
+				UserInfo temp = iter.next(); //데이터 가져오기
+				if((c_id.equals(temp.getId()))) {
+					JOptionPane.showMessageDialog(null, "아이디가 존재합니다.");
+					break;
+				}continue;
+			}
+			String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
+			String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
+			String c_pwck = JOptionPane.showInputDialog("비밀번호를 다시 입력해주세요");
+			if(c_pw.equals(c_pwck)) {
+					JOptionPane.showMessageDialog(null, "회원가입에 성공하셨습니다.");
+					users.add(new UserInfo(c_id,c_email,c_pw,c_pwck));
+					// view 화면갱신 - crud
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+					Object[] data = {UserInfo.cnt,c_id,c_email,sdf.format(System.currentTimeMillis())}; //날짜 추가
+					crud.model.addRow(data);
+					break;
+			}else {
+				JOptionPane.showMessageDialog(null, "비밀번호를 다시 확인해주세요.");
+				continue;
+					}
+			
+		}
+		
+//		if(c_pw.equals(c_pwck)) {
+//			JOptionPane.showMessageDialog(null, "회원가입에 성공하셨습니다.");
+//			users.add(new UserInfo(c_id,c_email,c_pw,c_pwck));
+//			// view 화면갱신 - crud
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+//			Object[] data = {UserInfo.cnt,c_id,c_email,sdf.format(System.currentTimeMillis())}; //날짜 추가
+//			crud.model.addRow(data);
+//		}else {
+//			JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다..");
 //		}
-		users.add(new UserInfo(c_id,c_email,c_pw,c_pwck));
-		// view 화면갱신 - crud
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Object[] data = {UserInfo.cnt,c_id,c_email,sdf.format(System.currentTimeMillis())}; //날짜 추가
-		crud.model.addRow(data);
+////		
+		
+		
 		//전체 데이터 불러오기 도전!
 	}
 

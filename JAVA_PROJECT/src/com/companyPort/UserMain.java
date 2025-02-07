@@ -29,6 +29,8 @@ public class UserMain {
 	UserProcess controller;
 	UserProcess [] process;
 	
+	
+	
 	// 생성자 ->사용할 수 있게 초기화
 	public UserMain() { 
 		users = new ArrayList<>();
@@ -36,6 +38,10 @@ public class UserMain {
 		crud = new UserView_crud();
 		login = new UserView_login();
 		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(), new UserLogin()};
+		ArrayList<UserInfo> list = new ArrayList<>();
+		Object[] data1 = {list.add(new UserInfo(0, "test1","two@naver.com","","",""))}; //이거 해결해라
+		crud.model.addRow(data1);
+		
 	}
 	
 	// 행위 - 기능 - 멤버함수
@@ -99,6 +105,7 @@ public class UserMain {
 	}
 	
 	public static void main(String[] args) {
+		
 		new UserMain().intro();
 	}
 

@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class UserInfo {
 	
 	public static int cnt=0;
-	private int no;
+	private int no=0;
 	private String id;
 	private String email;
 	
