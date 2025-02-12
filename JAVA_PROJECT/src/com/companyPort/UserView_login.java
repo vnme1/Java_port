@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class UserView_login {
 	
@@ -53,15 +54,35 @@ public class UserView_login {
 		frame.setLayout(null);
 		frame.setResizable(false); //움직이지마라
 		label.setBounds(0,0,600,500); //배치
-		JLabel l_id = new JLabel("ID >");
-		l_id.setBounds(200,200,100,50);
-
+		JLabel l_id = new JLabel("아이디 >");
+		l_id.setBounds(170,170,100,50);
+		JTextField J_id= new JTextField();
+		J_id.setBounds(300,180,110,30);
+		
+//		JLabel l_email = new JLabel("이메일 >");
+//		l_email.setBounds(170,210,100,50);
+//		JTextField J_email= new JTextField();
+//		J_email.setBounds(300,220,110,30);
+		
+		
+		JLabel l_pw = new JLabel("비밀번호 >");
+		l_pw.setBounds(170,250,100,50);
+		JTextField J_pw= new JTextField();
+		J_pw.setBounds(300,260,110,30);
+		
+		
 		btns_login[0].setBounds(250,350,110,40);
 		btns_login[1].setBounds(250,410,110,40); //api부분
 		
-		frame.add(l_id); //id입력창
+		
+		
+		frame.add(l_id); frame.add(J_id); //id입력창
+//		frame.add(email); frame.add(l_email); 
+		frame.add(l_pw); frame.add(J_pw); 
+//		frame.add(pwck); frame.add(l_pwck);
+		
 		frame.add(btns_login[0]); //버튼1 로그인
-		frame.add(btns_login[1]); //버튼2 회원가입
+		frame.add(btns_login[1]); //버튼2 api로그인
 		frame.add(label); //이미지
 		
 		frame.setSize(600,600); //크기

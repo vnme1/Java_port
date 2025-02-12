@@ -68,7 +68,7 @@ public class UserCreate implements UserProcess {
 				if((c_id.equals(temp.getId()))) {
 					JOptionPane.showMessageDialog(null, "아이디가 존재합니다.");
 					break;
-				}continue;
+				}
 			}
 			String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
 			String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");

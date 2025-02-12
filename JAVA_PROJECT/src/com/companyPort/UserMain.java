@@ -38,9 +38,9 @@ public class UserMain {
 		crud = new UserView_crud();
 		login = new UserView_login();
 		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(), new UserLogin()};
-		ArrayList<UserInfo> list = new ArrayList<>();
-		Object[] data1 = {list.add(new UserInfo(0, "test1","two@naver.com","","",""))}; //이거 해결해라
-		crud.model.addRow(data1);
+//		ArrayList<UserInfo> list = new ArrayList<>();
+//		Object[] data1 = {list.add(new UserInfo(0, "test1","two@naver.com","","",""))}; //이거 해결해라
+//		crud.model.addRow(data1);
 		
 	}
 	
