@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class UserView_login {
+public class UserView_signin {
 	
 	//멤버변수
 	JFrame frame;
@@ -27,9 +27,9 @@ public class UserView_login {
 	ImageIcon icon;
 	//생성자
 
-	public UserView_login(){
+	public UserView_signin(){
 		frame = new JFrame("@TOGETHER@");
-		icon = new ImageIcon("images\\login_page.png");
+		icon = new ImageIcon("images\\signinpage.png");
 		
 		//이미지 크기조절
 		Image img = icon.getImage();
@@ -38,7 +38,7 @@ public class UserView_login {
 		label = new JLabel(changeicon);
 		
 		//label = new JLabel(icon);
-		btns_login = new RoundedButton[]{ new RoundedButton("Login"),/*new RoundedButton("API로그인")*/ };
+		btns_login = new RoundedButton[]{ new RoundedButton("Signin"),/*new RoundedButton("API로그인")*/ };
 		//배경, 폰트색상, 사이즈
 		for(int i=0; i<btns_login.length; i++) {
 			btns_login[i].setBackground(Color.gray); 
@@ -54,32 +54,37 @@ public class UserView_login {
 		frame.setLayout(null);
 		frame.setResizable(false); //움직이지마라
 		label.setBounds(0,0,600,500); //배치
-		JLabel l_id = new JLabel("  아이디   >");
-		l_id.setBounds(190,190,100,50);
+		JLabel l_id = new JLabel("      아이디 >");
+		l_id.setBounds(190,170,100,50);
 		JTextField J_id= new JTextField();
-		J_id.setBounds(300,200,110,30);
+		J_id.setBounds(300,180,110,30);
 		
-//		JLabel l_email = new JLabel("이메일 >");
-//		l_email.setBounds(170,210,100,50);
-//		JTextField J_email= new JTextField();
-//		J_email.setBounds(300,220,110,30);
+		JLabel l_email = new JLabel("      이메일 >");
+		l_email.setBounds(190,220,100,50);
+		JTextField J_email= new JTextField();
+		J_email.setBounds(300,230,110,30);
 		
 		
-		JLabel l_pw = new JLabel("비밀번호 >");
+		JLabel l_pw = new JLabel("    비밀번호 >");
 		l_pw.setBounds(190,270,100,50);
 		JTextField J_pw= new JTextField();
 		J_pw.setBounds(300,280,110,30);
 		
+		JLabel l_pwck = new JLabel("비밀번호 확인 >");
+		l_pwck.setBounds(190,320,100,50);
+		JTextField J_pwck= new JTextField();
+		J_pwck.setBounds(300,330,110,30);
 		
-		btns_login[0].setBounds(250,370,110,60);
+		
+		btns_login[0].setBounds(250,390,110,60);
 		//btns_login[1].setBounds(250,410,110,40); //api부분
 		
 		
 		
 		frame.add(l_id); frame.add(J_id); //id입력창
-//		frame.add(email); frame.add(l_email); 
+		frame.add(l_email); frame.add(J_email); 
 		frame.add(l_pw); frame.add(J_pw); 
-//		frame.add(pwck); frame.add(l_pwck);
+		frame.add(l_pwck); frame.add(J_pwck);
 		
 		frame.add(btns_login[0]); //버튼1 로그인
 		//frame.add(btns_login[1]); //버튼2 api로그인
@@ -92,7 +97,7 @@ public class UserView_login {
 		
 	}
 	public static void main(String[] args) {
-		new UserView_login().show();
+		new UserView_signin().show();
 
 	}
 

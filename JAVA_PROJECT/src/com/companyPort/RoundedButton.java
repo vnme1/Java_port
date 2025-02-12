@@ -11,7 +11,7 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-class RoundedButton extends JButton {
+class RoundedButton extends JButton { //로그인 버튼
     public RoundedButton() { super(); decorate(); } 
     public RoundedButton(String text) { super(text); decorate(); } 
     public RoundedButton(Action action) { super(action); decorate(); } 

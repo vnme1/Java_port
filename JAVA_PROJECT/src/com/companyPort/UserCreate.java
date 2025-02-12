@@ -62,14 +62,21 @@ public class UserCreate implements UserProcess {
 		
 		for(;;) {
 			String c_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
-			Iterator<UserInfo> iter = users.iterator(); //줄을 서시오
-			while(iter.hasNext()) {
-				UserInfo temp = iter.next(); //데이터 가져오기
-				if((c_id.equals(temp.getId()))) {
-					JOptionPane.showMessageDialog(null, "아이디가 존재합니다.");
-					break;
-				}
-			}
+	        if (c_id == null || c_id.trim().isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
+	            continue;
+	        }
+
+	        boolean isDuplicate = false;
+	        for (UserInfo temp : users) {
+	            if (c_id.equals(temp.getId())) {
+	                JOptionPane.showMessageDialog(null, "아이디가 이미 존재합니다. 다시 입력해주세요.");
+	                isDuplicate = true;
+	                break;
+	            }
+	        }
+	        if (isDuplicate) continue;  // 중복된 경우 다시 입력
+
 			String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
 			String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
 			String c_pwck = JOptionPane.showInputDialog("비밀번호를 다시 입력해주세요");
