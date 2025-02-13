@@ -27,7 +27,7 @@ public class UserInfo {
 		this.date = date;
 	}//여기 수정
 	public UserInfo(String id, String email,  String pw, String pwck) {
-		this.no=++cnt;
+//		this.no=++cnt;  //sequence 때문에 필요없 주석처리
 		this.id = id;
 		this.email = email;
 		

@@ -121,4 +121,58 @@ public class UserCreate_signin implements UserProcess {
 		//전체 데이터 불러오기 도전!
 	}
 
+	
+	@Override
+	public void exec(UserView_crud crud) {
+		UserDAO dao = new UserDAO(); dao.getConnection();
+		UserInfo user = new UserInfo(); 
+		ArrayList<UserInfo> users = new ArrayList<>();
+		for(;;) {
+			String c_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
+	        if (c_id == null || c_id.trim().isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
+	            continue;
+	        }
+
+	        boolean isDuplicate = false;
+	        
+	        for (UserInfo temp : users) {
+	            if (c_id.equals(temp.getId())) {
+	                JOptionPane.showMessageDialog(null, "아이디가 이미 존재합니다. 다시 입력해주세요.");
+	                isDuplicate = true;
+	                break;
+	            }
+	        }
+	        if (isDuplicate) continue;  // 중복된 경우 다시 입력
+
+			String c_email = JOptionPane.showInputDialog("이메일을 입력해주세요");
+			if(c_email == null || c_email.trim().isEmpty()) {
+				JOptionPane.showInputDialog(null, "이메일이 입력되지않았습니다.");
+				continue;
+			}
+			
+			String c_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
+			if(c_pw == null || c_pw.trim().isEmpty()) {
+				JOptionPane.showInputDialog(null, "비밀번호가 입력되지않았습니다.");
+				continue;
+			}
+			String c_pwck = JOptionPane.showInputDialog("비밀번호를 다시 입력해주세요");
+			if(c_pw.equals(c_pwck)) {
+					JOptionPane.showMessageDialog(null, "회원가입에 성공하셨습니다.");
+					user.setId(c_id); user.setEmail(c_email); user.setPw(c_pw); user.setPwck(c_pwck); dao.insert(user);
+					
+					// view 화면갱신 - crud
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+					Object[] data = {UserInfo.cnt,c_id,c_email,sdf.format(System.currentTimeMillis())}; //날짜 추가
+					crud.model.addRow(data);
+					break;
+			}else {
+				JOptionPane.showMessageDialog(null, "비밀번호를 다시 확인해주세요.");
+				continue;
+					}
+			
+		}
+		
+	}
+
 }

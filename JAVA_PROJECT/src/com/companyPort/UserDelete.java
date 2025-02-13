@@ -53,4 +53,15 @@ public class UserDelete implements UserProcess {
 		crud.model.removeRow(cnt);; //어떤값을 몇번쨰줄 몇번째칸				
 		
 	}
+
+	@Override
+	public void exec(UserView_crud crud) {
+		//1. 삭제할 유저번호 입력받기
+		int  no = Integer.parseInt(JOptionPane.showInputDialog("삭제할 번호를 입력해주세요"));
+		//2. db에서 삭제
+		UserDAO dao = new UserDAO();  
+		dao.getConnection();   dao.delete(no);
+		//3. 화면처리
+		new UserRead().exec(crud);
+	}
 }

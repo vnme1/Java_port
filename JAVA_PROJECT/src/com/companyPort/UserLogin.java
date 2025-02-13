@@ -88,10 +88,17 @@ public class UserLogin implements UserProcess{
 
 		}
 
+	@Override
+	public void exec(UserView_crud crud) {
+		UserDAO dao = new UserDAO();
+		dao.getConnection();
+		ArrayList <UserInfo> list = dao.readAll(); //db연동 - 전체 데이터 가져오기
 		
 		
 		
-
-	
+		
+		
+	}
+		
 
 }

@@ -78,8 +78,6 @@ public class UserMain {
 //				member();
 //			}	
 //		});
-		
-		
 
 	}
 	public void login() {
@@ -89,43 +87,44 @@ public class UserMain {
 				controller = process[4]; controller.exec(users,crud); //처리하고 / 해당 view
 		}});
 	}
-	public void signin() {//*
-		signin.btns_login[0].addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {  //등록
-				controller = process[0]; controller.exec(users,crud); //회원등록
-		}});
-	}
+//	public void signin() {//*
+//		signin.btns_login[0].addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {  //등록
+//				controller = process[0]; controller.exec(users,crud); //회원등록
+//		}});
+//	}
 	
 	public void member() { //회원crud
+		new UserRead().exec(crud);
 		crud.button[0].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //등록
-				controller = process[0]; controller.exec(users,crud); //처리하고 / 해당 view
+				controller = process[0]; //controller.exec(users,crud); //처리하고 / 해당 view
+				controller.exec(crud); //db버전
 			}});
 		crud.button[1].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //수정
-				controller = process[1]; controller.exec(users,crud); //처리하고 / 해당 view
+				controller = process[1]; //controller.exec(users,crud); //처리하고 / 해당 view
+				controller.exec(crud); //db버전
 			}});
 		crud.button[2].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //삭제
-				controller = process[2]; controller.exec(users,crud); //처리하고 / 해당 view
+				controller = process[2]; //controller.exec(users,crud); //처리하고 / 해당 view
+				controller.exec(crud); //db버전
 			}});
 		crud.button[3].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //종료
 				crud.frame.dispose();//crud창 끄고
 				intro.show();//로그인 창 열기
-				//controller = process[3]; controller.exec(users,crud); //처리하고 / 해당 view
+				controller = process[3]; controller.exec(users,crud); //처리하고 / 해당 view
 			}});
-		
-		
+
 	}
-	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {	
 		new UserMain().intro();
 	}
 

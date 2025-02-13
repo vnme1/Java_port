@@ -7,6 +7,8 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class UserUpdate implements UserProcess {
+	Scanner scanner = new Scanner(System.in);
+	
 	@Override public void exec(ArrayList<UserInfo> users) {
 		System.out.println(".....3. update");
 		
@@ -68,5 +70,31 @@ public class UserUpdate implements UserProcess {
 		crud.model.setValueAt(email, cnt, 2); //어떤값을 몇번쨰줄 몇번째칸
 		
 		
+	}
+
+	@Override
+	public void exec(UserView_crud crud) {
+		//1.유저번호 / 이메일 입력받기
+		int no = Integer.parseInt(JOptionPane.showInputDialog("수정할 번호를 입력해주세요."));
+		//2. 수정할 이메일 입력받기
+		String email = JOptionPane.showInputDialog("수정할 이메일을 입력해주세요");
+		
+	    no = scanner.nextInt(); // 정수 입력 받기
+		
+		if(email == null || email.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "정보를 입력해주세요");
+		    return;
+		}
+		//3. model(저장수) - 해당번호의 데이터 찾아서 수정
+				
+		//2.db에서 수정
+
+		UserDAO dao   = new UserDAO();  dao.getConnection();
+		UserInfo user = new UserInfo();  user.setNo(no);   user.setEmail(email);
+		dao.update(user);
+		//3. 화면처리
+		new UserRead().exec(crud);
+		
+	
 	}
 }

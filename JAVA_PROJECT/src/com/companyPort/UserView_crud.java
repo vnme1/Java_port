@@ -47,7 +47,7 @@ public class UserView_crud {
 			button[i].setFont(new Font(Font.DIALOG, Font.PLAIN,15));
 		}
 		//색상지정
-		table.setBackground(new Color(255,0,0));  //??
+		table.setBackground(new Color(225,225,225));  //??
 		table.setRowHeight(25);
 		table.getTableHeader().setReorderingAllowed(false); //컬럼 이동 방지
 		
