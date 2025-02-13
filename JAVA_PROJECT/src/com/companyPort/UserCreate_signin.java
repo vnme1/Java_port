@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class UserCreate implements UserProcess {
+public class UserCreate_signin implements UserProcess {
 	
 	
 	@Override public void exec(ArrayList<UserInfo> users) {

@@ -24,6 +24,7 @@ public class UserMain {
 	UserView_intro intro;
 	UserView_crud crud;
 	UserView_login login;
+	UserView_signin signin;
 	
 	//controller
 	UserProcess controller;
@@ -37,6 +38,7 @@ public class UserMain {
 		intro = new UserView_intro(); intro.show();
 		crud = new UserView_crud();
 		login = new UserView_login();
+		signin = new UserView_signin();
 		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(), new UserLogin()};
 //		ArrayList<UserInfo> list = new ArrayList<>();
 //		Object[] data1 = {list.add(new UserInfo(0, "test1","two@naver.com","","",""))}; //이거 해결해라
@@ -67,6 +69,17 @@ public class UserMain {
 				member();
 			}	
 		});
+		
+//		intro.btns[1].addActionListener(new ActionListener() { //회원가입 버튼
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				intro.frame.dispose();//현재창 끄고
+//				signin.show();//crud 창 열기
+//				member();
+//			}	
+//		});
+		
+		
 
 	}
 	public void login() {
@@ -74,6 +87,13 @@ public class UserMain {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //로그인
 				controller = process[4]; controller.exec(users,crud); //처리하고 / 해당 view
+		}});
+	}
+	public void signin() {//*
+		signin.btns_login[0].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {  //등록
+				controller = process[0]; controller.exec(users,crud); //회원등록
 		}});
 	}
 	

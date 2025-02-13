@@ -9,6 +9,7 @@ public class UserInfo {
 	private String id;
 	private String email;
 	
+	
 	private String pw;
 	private String pwck;
 	private String date;	
