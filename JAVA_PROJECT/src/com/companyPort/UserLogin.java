@@ -92,10 +92,42 @@ public class UserLogin implements UserProcess{
 	public void exec(UserView_crud crud) {
 		UserDAO dao = new UserDAO();
 		dao.getConnection();
-		ArrayList <UserInfo> list = dao.readAll(); //db연동 - 전체 데이터 가져오기
+		ArrayList <UserInfo> users = dao.readAll(); //db연동 - 전체 데이터 가져오기
 		
+		System.out.println("현재 등록된 사용자 목록: ");
+	    for (UserInfo user : users) {
+	        System.out.println("ID: " + user.getId() + ", Email: " + user.getEmail());
+	    }
+
 		
-		
+		String l_id = JOptionPane.showInputDialog("아이디를 입력해주세요");
+	    String l_pw = JOptionPane.showInputDialog("비밀번호를 입력해주세요");
+
+	    //null값, 값입력 없을시 메세지뜨게
+	    if (l_id == null || l_pw == null || l_id.trim().isEmpty() || l_pw.trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "정보를 입력해주세요");
+	        return;
+	    }
+	    
+//	    l_id = l_id.trim();//공백제거 equalsIgnoreCase 대소문자 무시
+//	    l_pw = l_pw.trim();
+
+	    
+	    UserInfo user = dao.read(l_id.trim()); // 🔹 DB에서 ID 조회
+	    boolean Login_Success = false; //로그인 성공여부 기본값은 실패로
+	    
+	    if (user == null) {
+	        JOptionPane.showMessageDialog(null, "로그인 실패: 아이디가 존재하지 않습니다.");
+	        return;
+	    }
+	    if ("root".equalsIgnoreCase(l_id)) { //관리자root면 로그인 (비번 상관없이 성공뜨게)
+	        JOptionPane.showMessageDialog(null, "관리자 로그인 성공");
+	    } else if (user.getPw().equals(l_pw.trim())) {
+	        JOptionPane.showMessageDialog(null, "로그인 성공");
+	    } else {
+	        JOptionPane.showMessageDialog(null, "로그인 실패: 비밀번호가 틀렸습니다.");
+	    }
+	   
 		
 		
 	}

@@ -12,6 +12,10 @@ import java.util.ArrayList;
 public class UserDAO {
 	//상태(멤버변수)
 	public static Connection conn;
+	
+	public UserDAO() {
+        getConnection(); // 🔹 객체 생성 시 자동으로 DB 연결
+    }
 	//1.db연동
 	public Connection getConnection() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -19,9 +23,12 @@ public class UserDAO {
 		String pass = "TIGER";
 		
 		
-		try {
+		try {if (conn == null || conn.isClosed()) {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url,user,pass);
+			System.out.println("DB연동 성공");
+		}
+			
 		} catch (Exception e) { e.printStackTrace(); }
 	//Class.forName
 	//DriverManager.getConnection()
@@ -71,14 +78,14 @@ public class UserDAO {
 		return list;
 	}
 	//4. read
-	public UserInfo read(int no){ 
+	public UserInfo read(String id){ 
 		PreparedStatement pstmt = null; ResultSet rset = null;
 		
-		String sql = "select * from userinfo where no = ?";
+		String sql = "select * from userinfo where id = ?";
 		UserInfo result = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,no);
+			pstmt.setString(1,id);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				result = new UserInfo(rset.getInt("no"), rset.getString("id"),rset.getString("email"),rset.getString("pw"), rset.getString("pwck"),rset.getString("udate"));

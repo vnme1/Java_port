@@ -40,9 +40,6 @@ public class UserMain {
 		login = new UserView_login();
 		signin = new UserView_signin();
 		process = new UserProcess[] { new UserCreate(), new UserUpdate(), new UserDelete(), new UserRead(), new UserLogin()};
-//		ArrayList<UserInfo> list = new ArrayList<>();
-//		Object[] data1 = {list.add(new UserInfo(0, "test1","two@naver.com","","",""))}; //이거 해결해라
-//		crud.model.addRow(data1);
 		
 	}
 	
@@ -84,7 +81,8 @@ public class UserMain {
 		login.btns_login[0].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {  //로그인
-				controller = process[4]; controller.exec(users,crud); //처리하고 / 해당 view
+				controller = process[4]; //controller.exec(users,crud); //처리하고 / 해당 view
+				controller.exec(crud); //db버전
 		}});
 	}
 //	public void signin() {//*

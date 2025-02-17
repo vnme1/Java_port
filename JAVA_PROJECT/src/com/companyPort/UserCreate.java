@@ -139,6 +139,7 @@ public class UserCreate implements UserProcess {
 	                isDuplicate = true;
 	                break;
 	            }
+	            //root면 가입 못한다고 하기
 	        }
 	        if (isDuplicate) continue;  // 중복된 경우 다시 입력
 
